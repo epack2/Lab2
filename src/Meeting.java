@@ -11,7 +11,7 @@ public class Meeting extends Event implements Completable{
     {
         this.name = name;
         this.endDateTime = end;
-        date = start;
+        this.date = start;
         this.location = location;
     }
 
@@ -19,6 +19,7 @@ public class Meeting extends Event implements Completable{
     public void complete() {
         complete = true;
     }
+
 
 
     public boolean isComplete() {

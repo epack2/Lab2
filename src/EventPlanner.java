@@ -4,11 +4,19 @@ import java.time.LocalDateTime;
 
 public class EventPlanner {
 
-    public static void main(String[] args) {
+    EventListPanel eventListPanel = new EventListPanel();
+
+
+    public static  void main(String[] args) {
+
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //frame.getContentPane().add(EventListPanel, BorderLayout.CENTER);
+        //frame.getContentPane().add(, BorderLayout.CENTER);
+        frame.setTitle("Event Planner");
+        EventListPanel eventListPanel = new EventListPanel();
+        frame.getContentPane().add(eventListPanel);
+        
         frame.pack();
         frame.setVisible(true);
 

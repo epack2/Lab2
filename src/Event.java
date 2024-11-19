@@ -1,9 +1,12 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.awt.*;
 import java.time.LocalDateTime;
 
 abstract class Event implements Comparable<Event> {
     public String name;
     LocalDateTime date;
+
 
 
 
@@ -24,6 +27,7 @@ abstract class Event implements Comparable<Event> {
         this.name = name;
     }
 
+
     public int compareTo(Event e)
     {
         if (date.isAfter(e.getDateTime()))
@@ -41,4 +45,6 @@ abstract class Event implements Comparable<Event> {
 
     }
 
+
+    public abstract boolean isComplete();
 }
