@@ -7,7 +7,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
+//I added the observer pattern.
 public class EventListPanel extends JPanel {
+    //This is the instantiation of the observer pattern.
+    EventCreationListener eventCreationListener = new EventCreationListener();
+
+    private JLabel label;
+
+
     ArrayList<Event> events;
     JPanel controlPanel;
     JPanel displayPanel;
@@ -50,19 +57,31 @@ public class EventListPanel extends JPanel {
         controlPanel = new JPanel();
         controlPanel.setPreferredSize(new Dimension(700, 300));
 
-        // Add Event Button
+        // Add Event Button. I have the eventCreationListener taking the name of the events and adding it to the list of
+        // recently created names.
         addEventButton = new JButton("Add Event");
         addEventButton.setFont(new Font("Arial", Font.BOLD, 20));
         addEventButton.addActionListener(e -> {
             addEvent(new Deadline(Deadline1, Deadlinedate1));
+            this.eventCreationListener.eventOccurred(Deadline1);
             addEvent(new Deadline(Deadline2, Deadlinedate2));
+            this.eventCreationListener.eventOccurred(Deadline2);
             addEvent(new Deadline(Deadline3, Deadlinedate3));
+            this.eventCreationListener.eventOccurred(Deadline3);
             addEvent(new Meeting(Meeting1, Meetingdate1Start, Meetingdate1End, location1));
+            this.eventCreationListener.eventOccurred(Meeting1);
             addEvent(new Meeting(Meeting2, Meetingdate2Start, Meetingdate2End, location2));
+            this.eventCreationListener.eventOccurred(Meeting2);
             addEvent(new Meeting(Meeting3, Meetingdate3Start, Meetingdate3End, location3));
+            this.eventCreationListener.eventOccurred(Meeting3);
+            label = new JLabel(eventCreationListener.listOfEvents());
+            label.setFont(new Font("Arial", Font.BOLD, 30));
+            controlPanel.add(label);
+
 
         });
         controlPanel.add(addEventButton);
+
 
         eventComboBox = new JComboBox(SORT_OPTIONS);
         eventComboBox.setFont(new Font("Arial", Font.BOLD, 30));
@@ -79,6 +98,7 @@ public class EventListPanel extends JPanel {
 
             updateDisplay();
         });
+        //System.out.println(eventCreationListener.listOfEvents());
         controlPanel.add(eventComboBox);
 
         filters = new ArrayList<>();
@@ -98,6 +118,8 @@ public class EventListPanel extends JPanel {
         for (JCheckBox filter : filters)
             controlPanel.add(filter);
         add(controlPanel);
+
+
 
 
         displayPanel = new JPanel();

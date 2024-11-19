@@ -28,21 +28,8 @@ abstract class Event implements Comparable<Event> {
     }
 
 
-    public int compareTo(Event e)
-    {
-        if (date.isAfter(e.getDateTime()))
-        {
-            return 1;
-        }
-        else if (date.isBefore(e.getDateTime()))
-        {
-            return -1;
-        }
-        else
-        {
-            return 0;
-        }
-
+    public int compareTo(Event e) {
+        return 0;
     }
 
 
